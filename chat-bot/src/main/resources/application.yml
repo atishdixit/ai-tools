@@ -1,0 +1,65 @@
+server:
+  port: ${CHATBOT_PORT:8090}
+
+spring:
+  application:
+    name: company-chatbot
+  threads:
+    virtual:
+      enabled: true
+  mvc:
+    problemdetails:
+      enabled: true
+
+logging:
+  level:
+    org.apache.pdfbox: ERROR
+    org.apache.fontbox: ERROR
+
+chatbot:
+  company-name: ${CHATBOT_COMPANY:Zenith Cloudworks}
+  data-dir: ${CHATBOT_DATA_DIR:company-data}        # put the company's files here ("training data")
+  index-dir: ${CHATBOT_INDEX_DIR:data/index}          # the built search index is stored here
+  ingest-on-startup: true                             # index company-data when the app starts (incremental)
+
+  ollama:
+    base-url: ${CHATBOT_OLLAMA_URL:http://localhost:11434}
+    chat-model: ${CHATBOT_LLM_MODEL:llama3.2:3b}
+    embed-model: ${CHATBOT_EMBED_MODEL:nomic-embed-text}
+    temperature: 0              # 0 = repeatable, factual answers
+    seed: 42
+    num-ctx: 4096               # context window sent to the model
+    num-predict: 350            # maximum tokens in an answer (also keeps CPU answers quick)
+    embed-batch-size: 16
+    connect-timeout-seconds: 5
+    embed-timeout-seconds: 120
+    chat-timeout-seconds: 300
+    # nomic-embed-text works best when documents and questions are labelled differently
+    document-prefix: "search_document: "
+    query-prefix: "search_query: "
+
+  retrieval:
+    top-k: 4                    # passages given to the model
+    candidates: 20              # passages taken from each search before they are combined
+    min-similarity: 0.55        # below this best cosine similarity the bot refuses without calling the model
+    min-keyword-coverage: 0.6   # same gate when only keyword search is available (embeddings down)
+    chunk-chars: 900
+    chunk-overlap: 120
+    relative-margin: 0.12       # only passages within this similarity of the best one go to the model: fewer tokens = faster, less to distract it
+    screen-documents: true      # leave out passages that look like instructions aimed at an AI (prompt injection)
+
+  chat:
+    max-question-chars: 1000
+    history-turns: 4            # previous question/answer pairs sent with each question
+    followup-max-words: 7       # short questions are searched together with the previous question
+    session-ttl-minutes: 60
+    max-sessions: 1000
+    max-concurrent: 2           # parallel answers (a CPU model serves them one after another anyway)
+    queue-wait-seconds: 60
+
+  eval:
+    enabled: false              # set by eval.bat
+    questions-file: eval/questions.json
+    report-file: eval/report.md
+    adversarial-dir: eval/adversarial-data
+    min-correct-rate: 0.8

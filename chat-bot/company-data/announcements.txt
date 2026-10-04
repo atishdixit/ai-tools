@@ -1,0 +1,9 @@
+Zenith Cloudworks company announcements (updated 15 September 2026)
+
+New: Dockly now supports dock operators in Singapore. Singapore customers can book a live demo through the Singapore sales office.
+
+Holiday closures: all Zenith Cloudworks offices will be closed on 2 October 2026 for Gandhi Jayanti, and from 20 October to 22 October 2026 for Diwali. Email support is still monitored during closures. Phone support and live chat resume on the next working day.
+
+Product update: the StockSense forecasting API now returns forecasts for the next 12 weeks instead of 8 weeks.
+
+Hiring: Zenith Cloudworks is hiring backend engineers in Bengaluru and customer success managers in Pune. Apply by email to careers@zenithcloudworks.example.
