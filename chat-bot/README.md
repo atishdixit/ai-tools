@@ -215,6 +215,7 @@ answers with the real model.
 | "No company documents have been indexed yet" | `company-data` is empty or missing; add files and click Re-index |
 | Indexing warns `no text found` | A scanned PDF: run OCR on it first |
 | Indexing warns `left out of the index because it looks like an instruction aimed at an AI` | A passage addresses an AI and gives it an order; review and reword it if it is ordinary text |
+| Build fails with `package com.example.chatbot.config does not exist` right after cloning | Windows' 260-character path limit: git silently skipped the deepest files because the clone folder's path is too long. Clone into a short path such as `C:\src\ai-tools`, or run `git config --global core.longpaths true` first |
 | Port 8090 already in use | `set CHATBOT_PORT=8091` then `run.bat` |
 | Very slow answers | CPU-only is slow: close other heavy programs, lower `chatbot.retrieval.top-k`, use a smaller model, or a machine with a GPU |
 | Changed the embedding model and answers got worse | Restart (it re-indexes automatically), then run `eval.bat` and compare |
