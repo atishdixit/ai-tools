@@ -148,3 +148,4 @@ The full explanation, with the worked example and the decisions to confirm with 
 | Port 8501 is busy | `streamlit run app.py --server.port 8502` |
 | "missing column(s)" after an upload | The CSV needs `chart_id` and `code` (and `status` for the NLP file); see *Using your own data* |
 | First start is slow | Streamlit and pandas are large to import the first time; later starts are fast |
+| `ensurepip` / `No module named 'pip._internal'` while creating `.venv` (Windows) | The folder path is too long (Windows limit is about 260 characters). Move or clone the project to a short path such as `C:\src\pra-numbers` |
