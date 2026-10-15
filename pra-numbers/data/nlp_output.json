@@ -1,0 +1,8 @@
+{
+  "CH-1001": {"suggested": ["E11.9", "I10", "E11.65"], "suppressed": ["E78.5", "Z79.4", "E11.40"]},
+  "CH-1002": {"suggested": ["J44.9", "I50.9", "N18.30", "J44.1"], "suppressed": ["I10"]},
+  "CH-1003": {"suggested": ["F32.9", "F41.9"], "suppressed": ["G47.33"]},
+  "CH-1004": {"suggested": ["I48.91", "z79.01"], "suppressed": []},
+  "CH-1005": {"suggested": ["M54.5"], "suppressed": []},
+  "CH-1006": {"suggested": ["R51.9"], "suppressed": []}
+}

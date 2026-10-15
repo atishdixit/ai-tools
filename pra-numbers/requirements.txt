@@ -1,0 +1,2 @@
+# Runtime: just the UI. The calculation library itself (the "pra" package) uses only the Python standard library.
+streamlit>=1.35
